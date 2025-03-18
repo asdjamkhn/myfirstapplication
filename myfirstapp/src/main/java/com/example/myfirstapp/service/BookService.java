@@ -57,4 +57,12 @@ public class BookService {
 
     }
 
+    public Book addBook(Book book) {
+
+
+        Book newBook = bookInterface.save(book);
+
+        return newBook;
+
+    }
 }

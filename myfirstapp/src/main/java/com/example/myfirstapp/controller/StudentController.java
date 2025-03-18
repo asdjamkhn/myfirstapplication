@@ -1,6 +1,7 @@
 package com.example.myfirstapp.controller;
 
 import com.example.myfirstapp.apiresponse.ApiResponse;
+import com.example.myfirstapp.dto.StudentDto;
 import com.example.myfirstapp.service.StudentService;
 import com.example.myfirstapp.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,9 +81,9 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse updateStudent(@PathVariable int id, @RequestBody Student newstudent) {
+    public ApiResponse updateStudent(@PathVariable int id, @RequestBody StudentDto studentDto) {
 
-        boolean result = studentService.updateStudent(id, newstudent);
+        boolean result = studentService.updateStudent(id, studentDto);
 
         if(result == true){
             return ApiResponse.builder()
@@ -97,14 +98,12 @@ public class StudentController {
                     .data(null)
                     .build();
         }
-
-
     }
 
     @PostMapping
-    public ApiResponse addStudent(@RequestBody Student student) {
+    public ApiResponse addStudent(@RequestBody StudentDto studentDto) {
 
-        Student result = studentService.addStudent(student);
+        Student result = studentService.addStudent(studentDto);
 
         if(result != null ){
             return ApiResponse.builder()

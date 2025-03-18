@@ -3,6 +3,7 @@ package com.example.myfirstapp.controller;
 import com.example.myfirstapp.apiresponse.ApiResponse;
 import com.example.myfirstapp.service.BookService;
 import com.example.myfirstapp.student.Book;
+import com.example.myfirstapp.student.Student;
 import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -98,5 +99,26 @@ public class BookController {
                     .data(result)
                     .build();
         }
+    }
+
+    @PostMapping
+    public ApiResponse addBook(@RequestBody Book book) {
+
+        Book result = bookService.addBook(book);
+
+        if (result != null) {
+            return ApiResponse.builder()
+                    .message("Book added successfully")
+                    .status(HttpStatus.OK.value())
+                    .data(result)
+                    .build();
+        } else {
+            return ApiResponse.builder()
+                    .message("Book not added")
+                    .status(HttpStatus.NOT_FOUND.value())
+                    .data(null)
+                    .build();
+        }
+
     }
 }
