@@ -44,9 +44,13 @@ public class BookService {
 
         if (book1.isPresent()) {
 
+
+            Student student = new Student();
+            student.setId(bookDto.getStudent_id());
             Book oldBook = book1.get();
             oldBook.setName(bookDto.getName());
             oldBook.setAuthur(bookDto.getAuthur());
+            oldBook.setStudent(student);
             bookInterface.save(oldBook);
 
             return true;

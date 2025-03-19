@@ -3,6 +3,7 @@ package com.example.myfirstapp.student;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Builder
 @Entity
 @Table(name = "book")
 @NoArgsConstructor
@@ -17,7 +18,7 @@ public class Book {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;
 

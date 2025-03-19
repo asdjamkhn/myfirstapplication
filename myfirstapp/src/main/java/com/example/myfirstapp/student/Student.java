@@ -18,8 +18,8 @@ public class Student {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Book book;
+//    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Book book;
 
     private String name;
     private int age;
