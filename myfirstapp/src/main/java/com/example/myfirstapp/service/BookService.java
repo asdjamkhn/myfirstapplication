@@ -1,5 +1,6 @@
 package com.example.myfirstapp.service;
 
+import com.example.myfirstapp.dto.BookDto;
 import com.example.myfirstapp.repository.BookInterface;
 import com.example.myfirstapp.student.Book;
 import com.example.myfirstapp.student.Student;
@@ -37,16 +38,15 @@ public class BookService {
         return true;
     }
 
-    public boolean updateBook(int id, Book newbook) {
+    public boolean updateBook(int id, BookDto bookDto) {
 
         Optional<Book> book1 = bookInterface.findById(id);
 
         if (book1.isPresent()) {
 
-            Book oldBook = bookInterface.findById(id).get();
-            oldBook.setId(newbook.getId());
-            oldBook.setName(newbook.getName());
-            oldBook.setAuthur(newbook.getAuthur());
+            Book oldBook = book1.get();
+            oldBook.setName(bookDto.getName());
+            oldBook.setAuthur(bookDto.getAuthur());
             bookInterface.save(oldBook);
 
             return true;
@@ -57,12 +57,14 @@ public class BookService {
 
     }
 
-    public Book addBook(Book book) {
+    public Book addBook(BookDto bookDto) {
 
 
-        Book newBook = bookInterface.save(book);
+        Book newbook = new Book();
+        newbook.setName(bookDto.getName());
+        newbook.setAuthur(bookDto.getAuthur());
 
-        return newBook;
+        return bookInterface.save(newbook);
 
     }
 }

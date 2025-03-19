@@ -1,6 +1,7 @@
 package com.example.myfirstapp.controller;
 
 import com.example.myfirstapp.apiresponse.ApiResponse;
+import com.example.myfirstapp.dto.BookDto;
 import com.example.myfirstapp.service.BookService;
 import com.example.myfirstapp.student.Book;
 import com.example.myfirstapp.student.Student;
@@ -81,20 +82,20 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse updateBook(@PathVariable int id, @RequestBody Book newbook) {
+    public ApiResponse updateBook(@PathVariable int id, @RequestBody BookDto bookDto) {
 
-        boolean result = bookService.updateBook(id, newbook);
+        boolean result = bookService.updateBook(id, bookDto);
 
         if (result == true) {
 
             return ApiResponse.builder()
-                    .message("Book unable to update")
+                    .message("Book updated")
                     .status(HttpStatus.NOT_FOUND.value())
                     .data(null)
                     .build();
         } else {
             return ApiResponse.builder()
-                    .message("Book updated")
+                    .message("Book not updated")
                     .status(HttpStatus.FOUND.value())
                     .data(result)
                     .build();
@@ -102,9 +103,9 @@ public class BookController {
     }
 
     @PostMapping
-    public ApiResponse addBook(@RequestBody Book book) {
+    public ApiResponse addBook(@RequestBody BookDto bookDto) {
 
-        Book result = bookService.addBook(book);
+        Book result = bookService.addBook(bookDto);
 
         if (result != null) {
             return ApiResponse.builder()
