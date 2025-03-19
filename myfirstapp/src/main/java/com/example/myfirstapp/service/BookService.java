@@ -2,6 +2,7 @@ package com.example.myfirstapp.service;
 
 import com.example.myfirstapp.dto.BookDto;
 import com.example.myfirstapp.repository.BookInterface;
+import com.example.myfirstapp.repository.StudentInterface;
 import com.example.myfirstapp.student.Book;
 import com.example.myfirstapp.student.Student;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class BookService {
 
     private final BookInterface bookInterface;
-
+    private final StudentInterface studentInterface;
 
     public List<Book> getAllBooks() {
 
@@ -44,13 +45,10 @@ public class BookService {
 
         if (book1.isPresent()) {
 
-
-            Student student = new Student();
-            student.setId(bookDto.getStudent_id());
             Book oldBook = book1.get();
             oldBook.setName(bookDto.getName());
             oldBook.setAuthur(bookDto.getAuthur());
-            oldBook.setStudent(student);
+//            oldBook.setStudent(student);
             bookInterface.save(oldBook);
 
             return true;
@@ -63,11 +61,13 @@ public class BookService {
 
     public Book addBook(BookDto bookDto) {
 
+        Student student = studentInterface.findById(bookDto.getStudent_id())
+                .orElseThrow(() -> new IllegalArgumentException("Student not found with ID: " + bookDto.getStudent_id()));
 
         Book newbook = new Book();
         newbook.setName(bookDto.getName());
         newbook.setAuthur(bookDto.getAuthur());
-
+        newbook.setStudent(student);
         return bookInterface.save(newbook);
 
     }

@@ -4,12 +4,10 @@ import com.example.myfirstapp.student.Book;
 import com.example.myfirstapp.student.Student;
 import lombok.*;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
+
 @Getter
-@ToString
+@Setter
+@Builder
 public class BookDto {
 
     private String name;

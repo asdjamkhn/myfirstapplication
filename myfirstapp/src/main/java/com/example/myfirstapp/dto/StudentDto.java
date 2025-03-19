@@ -4,12 +4,10 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
+
 @Getter
-@ToString
+@Setter
+@Builder
 public class StudentDto {
 
     private String name;
