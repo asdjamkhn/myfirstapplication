@@ -3,8 +3,8 @@ package com.example.myfirstapp.service;
 import com.example.myfirstapp.dto.BookDto;
 import com.example.myfirstapp.repository.BookInterface;
 import com.example.myfirstapp.repository.StudentInterface;
-import com.example.myfirstapp.student.Book;
-import com.example.myfirstapp.student.Student;
+import com.example.myfirstapp.model.Book;
+import com.example.myfirstapp.model.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -70,5 +70,12 @@ public class BookService {
         newbook.setStudent(student);
         return bookInterface.save(newbook);
 
+    }
+
+    public List<Book> getBooksByStudentId(int studentId) {
+
+        List<Book> bookList = bookInterface.findByStudentId(studentId);
+
+        return bookList;
     }
 }

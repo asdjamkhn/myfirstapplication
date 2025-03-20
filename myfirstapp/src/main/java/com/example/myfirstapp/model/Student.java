@@ -1,4 +1,4 @@
-package com.example.myfirstapp.student;
+package com.example.myfirstapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

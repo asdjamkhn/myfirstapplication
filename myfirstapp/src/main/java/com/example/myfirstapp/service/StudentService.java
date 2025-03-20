@@ -3,7 +3,7 @@ package com.example.myfirstapp.service;
 
 import com.example.myfirstapp.dto.StudentDto;
 import com.example.myfirstapp.repository.StudentInterface;
-import com.example.myfirstapp.student.Student;
+import com.example.myfirstapp.model.Student;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 

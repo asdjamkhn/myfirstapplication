@@ -3,9 +3,7 @@ package com.example.myfirstapp.controller;
 import com.example.myfirstapp.apiresponse.ApiResponse;
 import com.example.myfirstapp.dto.BookDto;
 import com.example.myfirstapp.service.BookService;
-import com.example.myfirstapp.student.Book;
-import com.example.myfirstapp.student.Student;
-import jakarta.persistence.Id;
+import com.example.myfirstapp.model.Book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -86,17 +84,17 @@ public class BookController {
 
         boolean result = bookService.updateBook(id, bookDto);
 
-        if (result == true) {
+        if (result) {
 
             return ApiResponse.builder()
                     .message("Book updated")
-                    .status(HttpStatus.NOT_FOUND.value())
-                    .data(null)
+                    .status(HttpStatus.OK.value())
+                    .data(result)
                     .build();
         } else {
             return ApiResponse.builder()
                     .message("Book not updated")
-                    .status(HttpStatus.FOUND.value())
+                    .status(HttpStatus.NOT_MODIFIED.value())
                     .data(result)
                     .build();
         }
@@ -120,6 +118,14 @@ public class BookController {
                     .data(null)
                     .build();
         }
+    }
+
+    @GetMapping("/studentId/{studentId}")
+    public ApiResponse getBooksByStudentId(@PathVariable int studentId) {
+
+        List<Book> result = bookService.getBooksByStudentId(studentId);
+        return ApiResponse.builder().data(result).build();
 
     }
 }
+

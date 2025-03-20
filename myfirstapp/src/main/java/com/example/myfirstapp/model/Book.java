@@ -1,4 +1,4 @@
-package com.example.myfirstapp.student;
+package com.example.myfirstapp.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,7 +21,7 @@ public class Book implements Serializable {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "student_id")
     private Student student;
 
     private String name;

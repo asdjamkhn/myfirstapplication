@@ -3,7 +3,7 @@ package com.example.myfirstapp.controller;
 import com.example.myfirstapp.apiresponse.ApiResponse;
 import com.example.myfirstapp.dto.StudentDto;
 import com.example.myfirstapp.service.StudentService;
-import com.example.myfirstapp.student.Student;
+import com.example.myfirstapp.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -89,7 +89,7 @@ public class StudentController {
             return ApiResponse.builder()
                     .message("Student updated successfully")
                     .status(HttpStatus.OK.value())
-                    .data(null)
+                    .data(result)
                     .build();
         }else{
             return ApiResponse.builder()
